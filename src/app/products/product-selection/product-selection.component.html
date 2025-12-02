@@ -4,13 +4,26 @@
   <div class="grid">
     <div class="row">
       <div class="cellFull">
-        <select>
-          <option value="undifined" selected>-Select an Item-</option>
+        <select [(ngModel)]="selectedProduct">
+          <option value="undefined" selected>-Select an Item-</option>
           @for (product of products(); track product.id) {
           <option [ngValue]="product">{{ product.name }}</option>
           }
         </select>
       </div>
+    </div>
+
+    <div class="row">
+      <div class="cellLeft">Name:</div>
+      <div class="cellRight">{{ selectedProduct()?.name }}</div>
+    </div>
+    <div class="row">
+      <div class="cellLeft">Description:</div>
+      <div class="cellRight">{{ selectedProduct()?.description }}</div>
+    </div>
+    <div class="row">
+      <div class="cellLeft">Price:</div>
+      <div class="cellRight">{{ selectedProduct()?.price }}</div>
     </div>
 
     <div class="row">
