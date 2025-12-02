@@ -1,11 +1,12 @@
-import { Component, effect, signal } from '@angular/core';
+import { Component, computed, effect, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ProductData } from '../product-data';
 import { Products } from '../product';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-selection',
-  imports: [FormsModule],
+  imports: [FormsModule, CurrencyPipe],
   templateUrl: './product-selection.component.html',
   styleUrl: './product-selection.component.css',
 })
@@ -17,6 +18,11 @@ export class ProductSelectionComponent {
   quantity = signal(1);
 
   products = signal(ProductData.products);
+
+  total = computed(
+    () => (this.selectedProduct()?.price ?? 0) * this.quantity()
+  );
+  color = computed(() => (this.total() > 0 ? 'green' : 'red'));
 
   onIncrease() {
     this.quantity.update((qty) => qty + 1);
