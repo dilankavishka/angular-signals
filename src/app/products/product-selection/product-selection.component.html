@@ -2,6 +2,9 @@
   <div class="title">{{ pageTitle }}</div>
 
   <div class="grid">
+    @if( isLoading()) {
+    <div>Loading...</div>
+    } @else {
     <div class="row">
       <div class="cellFull">
         <select [(ngModel)]="selectedProduct">
@@ -52,5 +55,6 @@
         {{ total() | currency }}
       </div>
     </div>
+    }
   </div>
 </div>

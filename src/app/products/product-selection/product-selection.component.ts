@@ -29,6 +29,7 @@ export class ProductSelectionComponent {
   });
 
   products = this.productService.productResource.value;
+  isLoading = this.productService.productResource.isLoading;
 
   total = computed(
     () => (this.selectedProduct()?.price ?? 0) * this.quantity()
